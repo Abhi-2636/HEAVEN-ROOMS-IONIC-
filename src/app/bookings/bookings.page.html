@@ -1,0 +1,78 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <div class="header-logo-container">
+      <img src="https://i.postimg.cc/Qt51j6tw/Whats-App-Image-2025-10-11-at-16-48-26-removebg-preview.png" alt="Logo" class="header-logo" />
+      <ion-title>Heaven Rooms</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-segment [(ngModel)]="segment" value="past">
+    <ion-segment-button value="ongoing">
+      <ion-label>Ongoing (Favs)</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="past">
+      <ion-label>Past Bookings</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="segment">
+    
+    <div *ngSwitchCase="'ongoing'">
+      <div *ngIf="ongoingBookings.length > 0; else noFavorites">
+        <ion-card class="booking-card" *ngFor="let item of ongoingBookings">
+          <ion-img [src]="item.image"></ion-img>
+          <ion-card-header>
+            <ion-card-subtitle>{{ item.location }}</ion-card-subtitle>
+            <ion-card-title>{{ item.name }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p><strong>Rent:</strong> ₹{{ item.rent.toLocaleString() }}/month</p>
+            <p style="color: var(--ion-color-medium); margin-top: 5px;">Saved in Favorites</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <ng-template #noFavorites>
+        <div class="empty-state">
+          <ion-icon name="heart-dislike-outline"></ion-icon>
+          <p>No favorites in Ongoing list.</p>
+        </div>
+      </ng-template>
+    </div>
+
+    <div *ngSwitchCase="'past'">
+      <div *ngIf="pastBookings.length > 0; else noBookings">
+        <ion-card class="booking-card past-booking" *ngFor="let booking of pastBookings">
+          <ion-card-header>
+            <ion-card-subtitle>{{ booking.location }}</ion-card-subtitle>
+            <ion-card-title>{{ booking.name }}</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Booked On: <strong>{{ booking.bookingDate | date:'mediumDate' }}</strong></p> 
+            <p>Stayed: {{ booking.dates }}</p>
+            <div class="rating-container">
+              <ion-label>Your Rating:</ion-label>
+              <div class="stars">
+                <ion-button fill="clear" *ngFor="let star of [1, 2, 3, 4, 5]" (click)="rateBooking(booking, star)">
+                  <ion-icon
+                    slot="icon-only"
+                    [name]="star <= booking.rating ? 'star' : 'star-outline'"
+                    [color]="star <= booking.rating ? 'warning' : 'medium'">
+                  </ion-icon>
+                </ion-button>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+      <ng-template #noBookings>
+        <div class="empty-state">
+          <ion-icon name="bed-outline"></ion-icon>
+          <p>No past bookings yet.</p>
+        </div>
+      </ng-template>
+    </div>
+
+  </div>
+</ion-content>

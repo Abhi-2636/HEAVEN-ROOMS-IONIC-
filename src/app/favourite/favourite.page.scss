@@ -1,0 +1,45 @@
+.header-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 0 16px;
+  }
+  
+  .logo {
+    height: 36px;
+    margin-right: auto;
+  }
+  
+  .empty-state {
+    display: flex; flex-direction: column; justify-content: center;
+    align-items: center; height: 80%; color: var(--ion-color-medium);
+    ion-icon { font-size: 64px; }
+    p { margin-top: 16px; }
+  }
+  
+  ion-list {
+    background: transparent;
+    padding: 8px;
+  }
+  
+  .fav-item {
+    margin-bottom: 12px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  
+  ion-thumbnail {
+    width: 100px;
+    height: 100px;
+    --border-radius: 12px 0 0 12px;
+    margin-inline-end: 16px;
+  }
+  
+  .rent {
+    margin-top: 8px;
+  }
+  
+  .book-now-fav {
+    margin-top: 12px;
+    --border-radius: 8px;
+  }

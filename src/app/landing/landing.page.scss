@@ -1,0 +1,154 @@
+// 1. Animation Definitions
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+  50% { transform: translateY(-15px); box-shadow: 0 25px 30px rgba(0,0,0,0.15); }
+  100% { transform: translateY(0px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+}
+
+// 2. Main Page Container
+.landing-page {
+  // A dynamic "Sunset" gradient: Deep Orange -> Bright Amber
+  --background: linear-gradient(135deg, #FF4500, #FF7F50, #FF8C00, #FFD700);
+  --background-size: 300% 300%;
+  animation: gradientBG 12s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.center-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+  padding: 40px 30px;
+  position: relative;
+  z-index: 2;
+}
+
+// 3. Decorative Background Bubbles (Glass Effect)
+.center-wrapper::before, .center-wrapper::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  z-index: -1;
+}
+
+.center-wrapper::before {
+  width: 350px;
+  height: 350px;
+  top: -100px;
+  right: -80px;
+}
+
+.center-wrapper::after {
+  width: 250px;
+  height: 250px;
+  bottom: 40px;
+  left: -60px;
+}
+
+// 4. Content & Logo Styling
+.landing-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: center;
+  width: 100%;
+  animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.app-logo {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 35px;
+  // Frosted Glass Card for Logo
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 35px;
+  padding: 25px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  // Floating animation
+  animation: float 5s ease-in-out infinite;
+}
+
+h1 {
+  font-size: 2.8rem;
+  font-weight: 900; // Extra bold
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  letter-spacing: 1px;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+
+// 5. Button Group Styling
+.action-buttons {
+  width: 100%;
+  max-width: 340px;
+  margin-bottom: 30px;
+  opacity: 0; 
+  // Delays buttons so they appear after the logo
+  animation: fadeInUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
+
+  ion-button {
+    margin-bottom: 18px;
+    height: 60px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    --border-radius: 18px;
+    --box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform 0.2s;
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
+
+  // Primary Login Button: Clean White with Orange Text
+  ion-button.login-btn {
+    --background: #ffffff;
+    --color: #E65100; // Deep Orange text for contrast
+    --background-activated: #f2f2f2;
+  }
+
+  // Secondary Signup Button: Transparent with White Border
+  ion-button[fill="outline"] {
+    --background: rgba(255, 255, 255, 0.15);
+    --color: #ffffff;
+    --border-color: rgba(255, 255, 255, 0.8);
+    --border-width: 2px;
+    backdrop-filter: blur(4px);
+  }
+}

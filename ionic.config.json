@@ -1,0 +1,7 @@
+{
+  "name": "heaven--rooms",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

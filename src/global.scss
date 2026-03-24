@@ -1,0 +1,54 @@
+/* Core CSS required for Ionic components to work properly */
+@import "@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "@ionic/angular/css/normalize.css";
+@import "@ionic/angular/css/structure.css";
+@import "@ionic/angular/css/typography.css";
+@import '@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "@ionic/angular/css/padding.css";
+@import "@ionic/angular/css/float-elements.css";
+@import "@ionic/angular/css/text-alignment.css";
+@import "@ionic/angular/css/text-transformation.css";
+@import "@ionic/angular/css/flex-utils.css";
+
+/**
+ * App Theme
+ */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+:root {
+  --ion-color-primary: #007BFF;
+  --ion-color-primary-rgb: 0,123,255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255,255,255;
+  --ion-color-primary-shade: #006ce0;
+  --ion-color-primary-tint: #1a88ff;
+}
+ion-header ion-toolbar ion-title {
+    font-weight: bold;
+  }
+.header-logo-container {
+  display: flex;
+  align-items: center;
+  padding-left: 16px; /* Standard Ionic padding */
+  height: 100%;
+}
+
+.header-logo {
+  width: 32px;        /* Perfect icon size */
+  height: 32px;
+  object-fit: contain;
+  margin-right: 10px; /* Space between logo and text */
+}
+
+ion-header ion-toolbar ion-title {
+  font-weight: bold;
+  padding-inline-start: 0; /* Fixes alignment */
+}

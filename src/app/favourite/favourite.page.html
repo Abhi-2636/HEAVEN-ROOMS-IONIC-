@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <div class="header-logo-container">
+      <img src="https://i.postimg.cc/Qt51j6tw/Whats-App-Image-2025-10-11-at-16-48-26-removebg-preview.png" alt="Logo" class="header-logo" />
+      <ion-title>Heaven Rooms</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngIf="favoriteItems.length > 0; else noFavorites">
+    <ion-item-sliding *ngFor="let item of favoriteItems">
+      <ion-item lines="none" class="fav-item">
+        <ion-thumbnail slot="start">
+          <img [src]="item.image" alt="{{item.name}}" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{ item.name }}</h2>
+          <p>{{ item.location }}</p>
+          <p class="rent"><strong>₹{{ item.rent.toLocaleString() }}</strong> / month</p>
+          <ion-button 
+            size="small" 
+            class="book-now-fav" 
+            (click)="confirmBooking(item)">
+            Book Now
+          </ion-button>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="danger" (click)="removeFavorite(item)">
+          <ion-icon slot="icon-only" name="trash"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  
+  <ng-template #noFavorites>
+    <div class="empty-state">
+      <ion-icon name="heart-dislike-outline"></ion-icon>
+      <p>You haven't added any favorites yet.</p>
+    </div>
+  </ng-template>
+</ion-content>

@@ -1,0 +1,106 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="app-header">
+    <div class="header-logo-container">
+      <img src="https://i.postimg.cc/Qt51j6tw/Whats-App-Image-2025-10-11-at-16-48-26-removebg-preview.png" alt="Heaven Rooms Logo" class="header-logo" />
+      <ion-title>Heaven Rooms</ion-title>
+    </div>
+    <ion-buttons slot="end">
+      <ion-button><ion-icon slot="icon-only" name="notifications-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-searchbar
+    placeholder="Search PG by name or location"
+    (ionChange)="onSearchChange($event)"
+    [debounce]="300"
+  ></ion-searchbar>
+
+  <div class="welcome-greeting ion-padding-horizontal">
+    <ion-label>
+      <h1>Welcome, {{ userName }}!</h1>
+      <p>Find your perfect stay.</p>
+    </ion-label>
+  </div>
+  
+  <ion-list-header style="padding-top: 15px;">
+    <ion-label style="font-size: 1.3em; font-weight: bold;">Featured Rooms</ion-label>
+  </ion-list-header>
+
+  <div class="featured-cards-vertical ion-padding-horizontal">
+    <ion-card class="featured-card" *ngFor="let pg of allPgListings.slice(0, 5)" (click)="goToRoomDetail(pg.id)">
+      <ion-img [src]="pg.image" alt="PG Image"></ion-img>
+      <ion-card-header>
+        <ion-card-subtitle>{{ pg.location }}</ion-card-subtitle>
+        <ion-card-title>{{ pg.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Rent: ₹{{ pg.rent.toLocaleString() }}/month</p>
+        <ion-icon
+          [name]="pg.isFavorite ? 'heart' : 'heart-outline'"
+          [color]="pg.isFavorite ? 'danger' : 'medium'"
+          class="favorite-icon"
+          (click)="toggleFavorite($event, pg)"
+        ></ion-icon>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-segment [(ngModel)]="selectedSegment" (ionChange)="onSegmentChange($event)" value="all">
+    <ion-segment-button value="all">
+      <ion-label>All</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Lawgate">
+      <ion-label>Lawgate</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Green Valley">
+      <ion-label>Green Valley</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Maingate">
+      <ion-label>Maingate</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div class="empty-state" *ngIf="filteredPgListings.length === 0">
+    <ion-icon name="search-outline"></ion-icon>
+    <h3>No rooms found</h3>
+    <p>Try changing your search or filter.</p>
+  </div>
+
+  <div class="pg-list-grid" *ngIf="filteredPgListings.length > 0">
+    <ion-card *ngFor="let pg of filteredPgListings" (click)="goToRoomDetail(pg.id)">
+      
+      <div class="image-container">
+        <ion-img [src]="pg.image" alt="PG Image"></ion-img>
+        <div class="price-badge">
+          ₹{{ pg.rent | number }}/mo
+        </div>
+      </div>
+
+      <ion-card-header>
+        <ion-card-subtitle>
+          <ion-icon name="location-outline"></ion-icon> {{ pg.location }}
+        </ion-card-subtitle>
+        <ion-card-title>{{ pg.name }}</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="amenities-row">
+          <span><ion-icon name="wifi-outline"></ion-icon> WiFi</span>
+          <span><ion-icon name="snow-outline"></ion-icon> AC</span>
+        </div>
+        
+        <ion-button fill="clear" size="small" class="favorite-btn" (click)="toggleFavorite($event, pg)">
+          <ion-icon [name]="pg.isFavorite ? 'heart' : 'heart-outline'" [color]="pg.isFavorite ? 'danger' : 'medium'"></ion-icon>
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="warning">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

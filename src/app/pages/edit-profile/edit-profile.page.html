@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Edit Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="form-container">
+    <div class="avatar-section">
+      <ion-avatar>
+        <img [src]="profile.photo ? profile.photo : 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
+      </ion-avatar>
+      
+      <input 
+        type="file" 
+        #fileInput 
+        style="display: none;" 
+        accept="image/*" 
+        (change)="onFileSelected($event)"
+      />
+
+      <ion-button fill="clear" size="small" (click)="fileInput.click()">
+        Change Photo
+      </ion-button>
+    </div>
+
+    <ion-list lines="full">
+      <ion-item>
+        <ion-input label="Full Name" labelPlacement="stacked" [(ngModel)]="profile.name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Email" labelPlacement="stacked" [(ngModel)]="profile.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Phone" labelPlacement="stacked" [(ngModel)]="profile.phone"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea label="Bio / About" labelPlacement="stacked" [(ngModel)]="profile.bio" rows="3"></ion-textarea>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding-top">
+      <ion-button expand="block" color="warning" (click)="saveProfile()">
+        Save Changes
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

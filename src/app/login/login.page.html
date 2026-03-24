@@ -1,0 +1,32 @@
+<ion-header class="ion-no-border"> <ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/landing"></ion-back-button>
+  </ion-buttons>
+  <ion-title>Login</ion-title>
+</ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<div class="center-wrapper">
+  <div class="login-container">
+    <ion-img src="https://i.postimg.cc/Qt51j6tw/Whats-App-Image-2025-10-11-at-16-48-26-removebg-preview.png" alt="Logo" class="logo"></ion-img>
+    <h2>Welcome Back!</h2>
+    <p>Please log in to continue.</p>
+
+    <ion-list lines="none" class="login-form">
+      <ion-item>
+        <ion-input labelPlacement="stacked" type="email" placeholder="Email Address" [(ngModel)]="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input labelPlacement="stacked" type="password" placeholder="Password" [(ngModel)]="password"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button expand="block" (click)="login()">
+      Login
+    </ion-button>
+
+    <p class="signup-link">Don't have an account? <a (click)="goToSignup()">Sign Up</a></p>
+  </div>
+</div>
+</ion-content>

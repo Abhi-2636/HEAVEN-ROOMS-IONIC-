@@ -1,0 +1,220 @@
+// 1. Animations (Consistent with Landing/Login)
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+  50% { transform: translateY(-5px); box-shadow: 0 15px 20px rgba(0,0,0,0.15); }
+  100% { transform: translateY(0px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+}
+
+// 2. Header Styling - Consistent White Header with New Font
+ion-header {
+  ion-toolbar.app-header { // Use the common class
+    --background: #ffffff; // Solid White Background
+    --border-width: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); // Subtle shadow for separation
+  }
+  
+  .header-logo-container {
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    height: 100%;
+  }
+
+  .header-logo {
+    width: 38px; // Slightly larger
+    height: 38px;
+    object-fit: contain;
+    margin-right: 10px;
+    filter: none; // Ensure the logo retains its original colors
+  }
+
+  ion-title {
+    font-family: 'Montserrat', sans-serif; // Attractive Font (Ensure imported globally)
+    font-weight: 800; // Extra bold
+    font-size: 1.4em; // Larger title
+    padding-inline-start: 0;
+    letter-spacing: 0.5px;
+    color: #333333; // Dark Grey for text readability
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05); // Subtle text shadow
+  }
+}
+
+// 3. Main Content - The Orange Animated Theme
+ion-content {
+  // The signature Sunset Gradient
+  --background: linear-gradient(135deg, #FF4500, #FF7F50, #FF8C00, #FFD700);
+  --background-size: 300% 300%;
+  animation: gradientBG 12s ease infinite;
+  
+  // Add padding for the content flow
+  --padding-top: 20px; // Reduced as header is not transparent
+  --padding-bottom: 20px;
+
+  // --- A. Profile Card Section (Glass Effect) ---
+  .profile-card-section {
+    padding: 20px 16px;
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out forwards;
+
+    .profile-info-card {
+      // Glassmorphism Card
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 25px;
+      padding: 30px 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+      
+      .profile-avatar {
+        width: 110px;
+        height: 110px;
+        margin: 0 auto 15px auto;
+        border: 4px solid rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        // Floating animation for avatar
+        animation: float 6s ease-in-out infinite;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+
+      .user-details {
+        h2 {
+          font-size: 1.8em;
+          font-weight: 800;
+          margin: 0;
+          color: #ffffff;
+          text-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .email {
+          font-size: 1em;
+          color: rgba(255, 255, 255, 0.95);
+          margin-bottom: 5px;
+          font-weight: 500;
+        }
+        .bio {
+          font-size: 0.9em;
+          color: rgba(255, 255, 255, 0.8);
+          margin-bottom: 20px;
+          font-style: italic;
+        }
+
+        // Edit Button inside the card
+        ion-button {
+          --background: #ffffff;
+          --color: #E65100; // Deep Orange Text
+          --border-radius: 20px;
+          font-weight: 700;
+          height: 40px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          text-transform: none;
+          
+          ion-icon {
+            font-size: 1.2em;
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  // --- B. Action Lists (Settings) ---
+  .action-sections {
+    padding: 0 16px;
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    opacity: 0; // Start hidden for animation
+
+    .settings-list {
+      background: transparent; // Ensure list background is transparent
+      padding: 0;
+
+      ion-list-header {
+        padding-left: 10px;
+        margin-bottom: 10px;
+        
+        ion-label {
+          font-size: 1.2em;
+          font-weight: 800;
+          color: #ffffff;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          margin: 0;
+        }
+      }
+
+      // Individual List Items (Floating Capsules)
+      ion-item {
+        --background: rgba(255, 255, 255, 0.9); // Mostly opaque white
+        margin-bottom: 12px;
+        border-radius: 16px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        --padding-start: 16px;
+        --inner-padding-end: 10px;
+        transition: transform 0.2s;
+
+        &:active {
+          transform: scale(0.98);
+        }
+
+        ion-icon {
+          font-size: 1.4em;
+          margin-right: 15px;
+          // Gradient text effect hack for icons isn't native, using solid colors
+        }
+
+        // Icon Colors
+        &[routerLink*="bookings"] ion-icon { color: #FF6F00; }
+        &[routerLink*="favourite"] ion-icon { color: #D50000; }
+        ion-icon[name="person-circle-outline"] { color: #007BFF; }
+        ion-icon[name="help-buoy-outline"] { color: #00BFA5; }
+
+        ion-label {
+          font-weight: 600;
+          color: #333333;
+          font-size: 1em;
+        }
+      }
+    }
+  }
+
+  // --- C. Logout Section ---
+  .logout-section {
+    padding: 20px 16px;
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+
+    ion-button {
+      --background: rgba(255, 255, 255, 0.25); // Glass button
+      --color: #ffffff;
+      --border-radius: 16px;
+      --border-width: 2px;
+      --border-style: solid;
+      --border-color: rgba(255, 255, 255, 0.6);
+      height: 55px;
+      font-size: 1.1em;
+      font-weight: 700;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+
+      ion-icon {
+        margin-right: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<ion-content [fullscreen]="true" class="landing-page">
+  <div class="center-wrapper">
+    
+    <div class="landing-content">
+      <ion-img src="https://i.postimg.cc/Qt51j6tw/Whats-App-Image-2025-10-11-at-16-48-26-removebg-preview.png" alt="Heaven Rooms Logo" class="app-logo"></ion-img>
+      <h1>Heaven Rooms</h1>
+      <p>Connecting Dreams to Homes</p>
+    </div>
+
+    <div class="action-buttons">
+      <ion-button expand="block" class="login-btn" (click)="goToLogin()">
+        <ion-icon slot="start" name="log-in-outline"></ion-icon>
+        Login
+      </ion-button>
+      
+      <ion-button expand="block" fill="outline" (click)="goToSignup()">
+        <ion-icon slot="start" name="person-add-outline"></ion-icon>
+        Sign Up
+      </ion-button>
+    </div>
+
+  </div>
+</ion-content>

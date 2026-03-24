@@ -1,0 +1,270 @@
+/* Home Page Styles */
+
+// Common Header Styles
+ion-header {
+  ion-toolbar.app-header {
+    --background: #ffffff; // White header background
+    --border-width: 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); // Subtle shadow
+  }
+
+  .header-logo-container {
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    height: 100%;
+  }
+
+  .header-logo {
+    width: 38px; // Slightly larger logo
+    height: 38px;
+    object-fit: contain;
+    margin-right: 10px;
+    filter: none; // Ensure the logo retains its original colors
+  }
+
+  ion-title {
+    font-family: 'Montserrat', sans-serif; // Attractive Font (Ensure imported globally)
+    font-weight: 800; // Extra bold
+    font-size: 1.4em; // Larger title
+    padding-inline-start: 0;
+    letter-spacing: 0.5px;
+    color: #333333; // Dark Grey for text readability
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05); // Subtle text shadow
+  }
+
+  ion-buttons {
+    ion-button {
+      --color: #333333; // Dark icon color for contrast
+    }
+  }
+}
+
+// Welcome Greeting
+.welcome-greeting {
+  padding-top: 10px;
+  padding-bottom: 5px;
+  
+  h1 {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: var(--ion-color-dark);
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 0.9em;
+    color: var(--ion-color-medium);
+    margin-top: 0;
+  }
+}
+
+/* --- Featured Cards Vertical (Replaces Swiper) --- */
+.featured-cards-vertical {
+  display: flex;
+  flex-direction: column; /* Stack cards vertically */
+  gap: 15px; /* Spacing between cards */
+  padding-bottom: 20px;
+
+  .featured-card {
+    margin: 0; /* Remove default card margin */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    height: 250px; // Fixed height for consistent cards
+    display: flex;
+    flex-direction: column;
+    background: white; /* Ensure card background is white */
+
+    ion-img {
+      height: 60%;
+      object-fit: cover;
+      --border-radius: 12px 12px 0 0;
+    }
+
+    ion-card-header {
+      padding: 10px 15px 5px;
+      ion-card-subtitle {
+        font-size: 0.8em;
+        color: var(--ion-color-medium);
+      }
+      ion-card-title {
+        font-size: 1.1em;
+        font-weight: bold;
+        color: var(--ion-color-dark);
+      }
+    }
+
+    ion-card-content {
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px 15px 10px;
+
+      p {
+        margin: 0;
+        font-size: 0.9em;
+        font-weight: 500;
+        color: var(--ion-color-primary);
+      }
+
+      .favorite-icon {
+        font-size: 1.5em;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+/* Segment Styling */
+ion-segment {
+  margin: 15px 16px; // Margin for segment above the grid
+  --background: var(--ion-color-light);
+  --border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  ion-segment-button {
+    --color: var(--ion-color-medium);
+    --color-checked: var(--ion-color-warning-contrast); // Text color when checked
+    --background-checked: var(--ion-color-warning); // Orange background when checked
+    --indicator-color: transparent; // Hide the default indicator
+    --border-radius: 10px;
+    font-weight: 500;
+    text-transform: capitalize;
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    ion-label {
+      padding: 8px 0;
+    }
+  }
+}
+
+
+/* PG List Grid */
+.pg-list-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 16px;
+  padding-bottom: 80px; /* Space for FAB */
+
+  ion-card {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: white;
+
+    .image-container {
+      position: relative; /* Needed for the badge */
+    }
+
+    /* Floating Price Badge */
+    .price-badge {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(0, 0, 0, 0.75); /* Dark transparent bg */
+      color: white;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8em;
+      font-weight: bold;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    ion-img {
+      height: 120px;
+      object-fit: cover;
+      --border-radius: 12px 12px 0 0;
+    }
+
+    ion-card-header {
+      padding: 10px 12px 5px;
+      ion-card-subtitle {
+        font-size: 0.75em;
+        color: var(--ion-color-medium);
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      ion-card-title {
+        font-size: 0.95em;
+        font-weight: bold;
+        color: var(--ion-color-dark);
+      }
+    }
+
+    ion-card-content {
+      display: flex;
+      flex-direction: column; /* Changed for amenities row to stack better */
+      justify-content: space-between;
+      align-items: flex-start; /* Align amenities to start */
+      padding: 5px 12px 10px;
+      gap: 8px; /* Space between amenities and favorite button */
+
+      p {
+        margin: 0;
+        font-size: 0.8em;
+        font-weight: 500;
+        color: var(--ion-color-primary);
+      }
+
+      .favorite-icon {
+        font-size: 1.3em;
+        cursor: pointer;
+        align-self: flex-end; /* Push heart icon to the end */
+      }
+    }
+
+    .amenities-row {
+      display: flex;
+      flex-wrap: wrap; /* Allow amenities to wrap */
+      gap: 8px; /* Space between amenity items */
+      margin-bottom: 0; /* No margin below if favorite is pushed */
+      
+      span {
+        display: flex;
+        align-items: center;
+        font-size: 0.7em;
+        color: var(--ion-color-medium);
+        background: var(--ion-color-light); /* Light background for amenities */
+        padding: 2px 6px;
+        border-radius: 4px;
+        ion-icon {
+          margin-right: 4px;
+          font-size: 1em;
+        }
+      }
+    }
+  }
+}
+
+/* Empty State Styling */
+.empty-state {
+  text-align: center;
+  padding: 50px 20px;
+  color: var(--ion-color-medium);
+  
+  ion-icon {
+    font-size: 4em;
+    opacity: 0.5;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0;
+  }
+}
+
+/* Fab Button */
+ion-fab-button {
+  --background: var(--ion-color-warning);
+  --background-activated: var(--ion-color-warning-shade);
+  --color: var(--ion-color-warning-contrast);
+}

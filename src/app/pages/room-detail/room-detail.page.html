@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ room?.name || 'Room Details' }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="room">
+    <ion-img [src]="room.image"></ion-img>
+
+    <div class="ion-padding">
+      <h2>{{ room.name }}</h2>
+      <ion-text color="medium">
+        <p>{{ room.location }}</p>
+      </ion-text>
+
+      <div class="price-line">
+        <ion-text color="primary">
+          <h3><strong>₹{{ room.rent.toLocaleString() }}</strong> / month</h3>
+        </ion-text>
+      </div>
+      
+      <h4>Description</h4>
+      <p>{{ room.description }}</p>
+
+      <h4>Amenities</h4>
+      <div class="amenities-container">
+        <ion-chip *ngFor="let amenity of room.amenities">
+          <ion-label>{{ amenity }}</ion-label>
+        </ion-chip>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+  <ion-toolbar>
+    <ion-button (click)="confirmBooking(room)" expand="full" color="primary" class="ion-margin">
+      Book Now
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>
